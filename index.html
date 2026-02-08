@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarzani Majom- és Gorillagyár | TMG Group Corporation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --jungle-green: #1a4d2e;
+            --bamboo-tan: #e8d5b7;
+            --copper: #c75b39;
+            --charcoal: #2d3436;
+            --cream: #faf8f3;
+            --gold: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--jungle-green) 0%, #2d5a3f 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(255,255,255,0.03) 50px,
+                    rgba(255,255,255,0.03) 51px
+                );
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1200px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            color: var(--bamboo-tan);
+            letter-spacing: 0.05em;
+            line-height: 0.9;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+            animation: slideDown 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .tagline {
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--gold);
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 1rem;
+            animation: fadeIn 1.5s ease-out 0.3s both;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--bamboo-tan);
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            animation: fadeIn 1.5s ease-out 0.6s both;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--copper);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 3px solid var(--copper);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: fadeIn 1.5s ease-out 0.9s both;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .cta-button:hover {
+            background: transparent;
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+        
+        /* Decorative elements */
+        .vine {
+            position: absolute;
+            width: 2px;
+            background: rgba(232, 213, 183, 0.2);
+            animation: grow 2s ease-out forwards;
+        }
+        
+        .vine-1 { top: 0; left: 10%; height: 0; animation-delay: 0.5s; }
+        .vine-2 { top: 0; left: 30%; height: 0; animation-delay: 0.8s; }
+        .vine-3 { top: 0; right: 15%; height: 0; animation-delay: 1.1s; }
+        .vine-4 { top: 0; right: 35%; height: 0; animation-delay: 0.6s; }
+        
+        /* About Section */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-dark {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+        
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--jungle-green);
+            margin-bottom: 3rem;
+            letter-spacing: 0.08em;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-dark .section-title {
+            color: var(--bamboo-tan);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: var(--copper);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .about-card {
+            background: white;
+            padding: 2.5rem;
+            border-left: 6px solid var(--jungle-green);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .about-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--jungle-green);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .about-card p {
+            line-height: 1.8;
+            color: var(--charcoal);
+            opacity: 0.85;
+        }
+        
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, var(--jungle-green) 0%, #2d5a3f 100%);
+            padding: 3rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        .product-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .product-emoji {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .product-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            color: var(--gold);
+        }
+        
+        .product-type {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--bamboo-tan);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .product-features li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .product-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Services Section */
+        .services-container {
+            background: var(--bamboo-tan);
+            padding: 4rem 3rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: start;
+            gap: 2rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid rgba(26, 77, 46, 0.2);
+        }
+        
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        
+        .service-content h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--jungle-green);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .service-content p {
+            line-height: 1.7;
+            color: var(--charcoal);
+            opacity: 0.85;
+        }
+        
+        /* Founder Section */
+        .founder-section {
+            background: linear-gradient(135deg, var(--copper) 0%, #a84527 100%);
+            padding: 5rem 3rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(255,255,255,0.03) 20px,
+                    rgba(255,255,255,0.03) 21px
+                );
+        }
+        
+        .founder-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .founder-content h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 5rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+        }
+        
+        .founder-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--bamboo-tan);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-info {
+            margin: 2rem 0;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+        
+        .footer-note {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(232, 213, 183, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes grow {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="vine vine-1"></div>
+        <div class="vine vine-2"></div>
+        <div class="vine vine-3"></div>
+        <div class="vine vine-4"></div>
+        
+        <div class="hero-content">
+            <h1 class="logo">TARZANI<br>MAJOM- ÉS<br>GORILLAGYÁR</h1>
+            <p class="tagline">TMG Group Corporation</p>
+            <p class="subtitle">Prémium majmok és gorillák gyártása 2025 óta</p>
+            <a href="#products" class="cta-button">Fedezze fel termékeinket</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <h2 class="section-title">Rólunk</h2>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Fiatal és Dinamikus</h3>
+                <p>A TMG Group Corporation 2025-ben alakult, és bár még csak 9 hónapos vállalkozásként működünk, máris az iparág élvonalába tartozunk. Innovatív megközelítésünk és elkötelezettségünk a minőség iránt gyorsan felismertté tett minket a piacon.</p>
+            </div>
+            <div class="about-card">
+                <h3>Különleges Alapanyagok</h3>
+                <p>Alapanyagainkat kizárólag Maugliból hozzuk - egy egyedülálló lelőhelyről, ahol a legkiválóbb minőségű anyagok találhatók. Ez biztosítja termékeink páratlan tartósságát és megbízhatóságát.</p>
+            </div>
+            <div class="about-card">
+                <h3>Magyar Gyártás</h3>
+                <p>Büszkén mondhatjuk, hogy gyáraink és szalonjaink Magyarországon találhatók. Jelenleg a helyszíni értékesítésre és szervizre összpontosítunk, azonban hamarosan elérhető lesz online rendelési lehetőség is!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section section-dark">
+        <h2 class="section-title">Termékeink</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="product-emoji">🐵</span>
+                <h3>Majmok</h3>
+                <p class="product-type">Lakossági és korlátozott ipari használatra</p>
+                <p>Sokoldalú társak mindennapi feladatokra és társaságnak egyaránt.</p>
+                <ul class="product-features">
+                    <li>Építészmajom - építkezési munkákhoz</li>
+                    <li>Futármajom - csomagszállításhoz</li>
+                    <li>Hajvágómajom - fodrászati feladatokra</li>
+                    <li>Társasági majom - otthoni neveléshez</li>
+                </ul>
+            </div>
+            
+            <div class="product-card">
+                <span class="product-emoji">🦍</span>
+                <h3>Gorillák</h3>
+                <p class="product-type">Ipari és nehéz munkákra optimalizálva</p>
+                <p>Tartós, erős munkaeszközök a legnagyobb kihívásokra.</p>
+                <ul class="product-features">
+                    <li>Testőrgorilla - biztonságtechnikai feladatokra</li>
+                    <li>Mentőgorilla - baleseteknél</li>
+                    <li>Rendőrgorilla - közbiztonsági munkákra</li>
+                    <li>Ipari gorilla - nehéz teherbírást igénylő feladatokra</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <h2 class="section-title">Szolgáltatásaink</h2>
+        <div class="services-container">
+            <div class="service-item">
+                <div class="service-icon">🔧</div>
+                <div class="service-content">
+                    <h3>Alkatrész Értékesítés</h3>
+                    <p>Nem csak komplett majmokat és gorillákat kínálunk! Vásárolhat alkatrészeket is, amelyeket otthon saját maga szerelhet össze - ez jelentős költségmegtakarítást jelent. Elérhető alkatrészek: végtagok, töltőállomások, játékok, tankönyvek és egyéb kiegészítők.</p>
+                </div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-icon">🛠️</div>
+                <div class="service-content">
+                    <h3>Javítási Szolgáltatás</h3>
+                    <p>Ha meghibásodik a majma vagy gorillája, szalonjainkban teljes körű javítási szolgáltatást biztosítunk. Cserealkatrészek azonnal elérhetők, és szakképzett munkatársaink helyben elvégzik a szükséges javításokat. <strong>Fontos: időpontfoglalás szükséges!</strong></p>
+                </div>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-icon">📚</div>
+                <div class="service-content">
+                    <h3>Komplett Nevelési Csomagok</h3>
+                    <p>Társasági majmokhoz átfogó nevelési csomagokat kínálunk, amely tartalmaz minden szükséges eszközt a fejlődéshez: töltőállomás, játékok, tankönyvek és kiegészítők. Ezek az érzékeny műszerek alapos karbantartást igényelnek a hosszú távú működéshez.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <div class="founder-section">
+        <div class="founder-content">
+            <h2>Kötcsei Milán</h2>
+            <p class="badge">Alapító & Vezérigazgató</p>
+            <p>A TMG Group Corporation alapítója és vezetője, aki vízióval és elkötelezettséggel teremtette meg a majom- és gorillagyártás új standardjait. Innovatív gondolkodása és üzleti érzéke révén a vállalat átlagosan sikeres lett, és folyamatosan növekszik.</p>
+            
+            <div style="margin-top: 3rem; background: rgba(0,0,0,0.2); padding: 2rem; border-radius: 8px;">
+                <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 1.5rem; letter-spacing: 0.05em;">🎙️ Podcast: Családi Vállalkozás</h3>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Hallgassa meg beszélgetésünket Kötcsei Milánnal és édesapjával, Kötcsei Csabával a TMG Group Corporation létrehozásáról, a családi értékekről és a majom- és gorillagyártás jövőjéről.</p>
+                <audio controls style="width: 100%; max-width: 600px; margin: 0 auto; display: block; filter: brightness(1.2);">
+                    <source src="https://drive.google.com/uc?export=download&id=16lQrRhxThA4-P9mSMr7e9irDzdH5AR4v" type="audio/mpeg">
+                    A böngészője nem támogatja az audio elemet.
+                </audio>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Vendégek: Kötcsei Milán (Alapító & CEO) és Kötcsei Csaba (Tanácsadó)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">TMG GROUP</div>
+            <div class="footer-info">
+                <p><strong>Tarzani Majom- és Gorillagyár</strong></p>
+                <p>Magyarország</p>
+                <p>Alapítva: 2025</p>
+                <p style="margin-top: 1.5rem; font-style: italic;">Hamarosan elérhető online rendelési lehetőség!</p>
+            </div>
+            <div class="footer-note">
+                <p>TMG Group Corporation - Kapcsolódó vállalatok: K&K (Kukahaz Gyártás)</p>
+                <p>&copy; 2025 TMG Group Corporation. Minden jog fenntartva.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
